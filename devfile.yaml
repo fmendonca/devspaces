@@ -2,6 +2,17 @@ schemaVersion: 2.2.0
 metadata:
   name: devspaces-azure-cli
 components:
+  - name: ubi-minimal
+    container:
+      args:
+        - '-f'
+        - /dev/null
+      command:
+        - tail
+      image: registry.access.redhat.com/ubi8/ubi-minimal
+      memoryLimit: 64M
+      mountSources: true
+      sourceMapping: /projects
   - name: azure-cli
     container:
       image: mcr.microsoft.com/azure-cli
