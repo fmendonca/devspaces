@@ -15,12 +15,17 @@ components:
       sourceMapping: /projects
   - name: azure-cli
     container:
-      image: mcr.microsoft.com/azure-cli
+      args:
+        - '-f'
+        - /dev/null
+      command:
+        - tail
+      image: quay.io/fcalomen/bastion:ubi9-0.3
       memoryLimit: 512Mi
       mountSources: true
       volumeMounts:
         - name: azure-cli-vol
-          path: /azure-cli
+          path: /opt/bastion/azure-cli
   - name: azure-cli-vol
     volume:
       size: 1G
