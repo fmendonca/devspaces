@@ -17,7 +17,7 @@ components:
     container:
       command:
         - /bin/bash
-      image: mcr.microsoft.com/azure-cli:latest
+      image: quay.io/fcalomen/bastion:azure-cli-0.1
       memoryLimit: 512Mi
       mountSources: true
       volumeMounts:
