@@ -2,19 +2,24 @@ schemaVersion: 2.2.0
 metadata:
   name: devspaces-azure-cli
 components:
-  - name: azure-cli
+  - name: tools
     container:
-      args:
-        - '-f'
-        - /dev/null
-      command:
-        - tail
-      image: quay.io/fcalomen/bastion:azure-cli-0.1
-      memoryLimit: 512Mi
-      mountSources: true
+      image: quay.io/fcalomen/bastion:azure-cli-0.2
+      memoryLimit: 3Gi
+      endpoints:
+        - exposure: none
+          name: debug
+          protocol: tcp
+          targetPort: 5005
+        - exposure: public
+          name: 8080-https
+          protocol: https
+          targetPort: 8080
       volumeMounts:
-        - name: azure-cli-vol
-          path: /opt/bastion/azure-cli
-  - name: azure-cli-vol
+        - name: m2
+          path: /home/user/.m2
+
+  - name: m2
     volume:
       size: 1G
+      
